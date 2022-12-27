@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container-grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 10px 1fr;
+}
+
+.gutter-col {
+  grid-row: 1/-1;
+  cursor: col-resize;
+}
+
+.gutter-col-1 {
+  grid-column: 2;
+  background-image: url('../public/vertical.png');
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-color: #eaeaea;
+}
