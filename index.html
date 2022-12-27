@@ -7,14 +7,20 @@
     <title>DritsJs</title>
   </head>
   <body>
-    <div class="w-full h-full absolute">
+    <div class="w-full h-full absolute overflow-hidden">
       <div class="h-full grid" style="grid-template-columns: 49.8% 0.6% 49.8%">
         <div class="flex-auto">
           <div id="editor" class="h-full"></div>
         </div>
         <div class="gutter-col gutter-col-1"></div>
         <div class="bg-vsdark text-white pl-5">
-          <div>// Here will appear your output</div>
+          <div id="output">// Here will appear your output <br /></div>
+          <button
+            class="rounded-2xl right-5 bottom-5 absolute bg-gradient-to-r from-purple-600 to-pink-500 p-2 font-bold"
+            type="button"
+          >
+            Clear console
+          </button>
         </div>
       </div>
     </div>
