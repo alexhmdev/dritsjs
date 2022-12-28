@@ -2,21 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 14px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #4f4f4f;
+}
 .container-grid {
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 10px 1fr;
 }
 
 .gutter-col {
-  grid-row: 1/-1;
+  grid-row: 1/2/1;
   cursor: ew-resize;
-}
-
-.gutter-col-1 {
-  grid-column: 2;
-  background-image: url('vertical.png');
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-color: #eaeaea;
 }

@@ -20,8 +20,10 @@ Split({
   ],
 });
 
-const outputDiv = document.querySelector('#output');
+const output = document.querySelector('#output');
 const editorDiv = document.querySelector('#editor');
+const clearButton = document.querySelector('#clearButton');
+
 const codeEditor = editor.create(editorDiv, {
   value: `const HelloWorld = () => {
     console.log('Hello world')
@@ -35,36 +37,55 @@ HelloWorld()`,
   wordWrap: 'on',
 });
 
+function clearOutput() {
+  output.textContent = '';
+}
+
 // Override the console.log function to display the output in the output div
 const oldLog = console.log;
 const oldError = console.error;
 console.log = function (...args) {
   oldLog(...args);
-  outputDiv.innerHTML = `<p>${args.join(' ')}</p>`;
+  output.innerText += args.join(' ') + '\n';
 };
 
 console.error = function (...args) {
   oldError(...args);
-  outputDiv.innerHTML = `<p class="text-red-500">${args.join(' ')}</p>`;
+  output.innerHTML += `<pre class="text-red-500">${args.join(' ')}</pre>`;
 };
 
 function executeCode() {
   try {
+    clearOutput();
     const code = codeEditor.getValue();
-    eval(code);
+    console.log(eval(code));
   } catch (error) {
     console.error(error);
   }
 }
 
 let timeout;
-codeEditor.onDidChangeModelContent(() => {
+codeEditor.onDidChangeModelContent((event) => {
+  oldLog(event);
   clearTimeout(timeout);
   timeout = setTimeout(() => {
     executeCode();
   }, 300);
 });
 
-function clearOutput() {}
+clearButton.addEventListener('click', () => {
+  clearOutput();
+});
+function printMessage() {
+  console.log('\n\n\n\n\n\n\n\n', '     /         / \\        Welcome');
+  console.log('     /         /   \\       To');
+  console.log('    /         /     \\      DritsJs');
+  console.log('   /         /       \\');
+  console.log('   \\        /        /     ⌨️⚡');
+  console.log('    \\      /        /');
+  console.log('     \\    /        /');
+  console.log('      \\  /        /', '\n');
+  console.log('      Type and write code to start...');
+}
 
-executeCode();
+printMessage();

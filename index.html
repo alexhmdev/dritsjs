@@ -8,16 +8,18 @@
   </head>
   <body>
     <div class="w-full h-full absolute overflow-hidden">
-      <div class="h-full grid" style="grid-template-columns: 49.8% 0.6% 49.8%">
-        <div class="flex-auto">
-          <div id="editor" class="h-full"></div>
-        </div>
-        <div class="gutter-col gutter-col-1"></div>
-        <div class="bg-vsdark text-white pl-5">
-          <div id="output">// Here will appear your output <br /></div>
+      <div
+        class="h-full grid"
+        style="grid-template-columns: 49.99% 0.1% 49.99%"
+      >
+        <div id="editor" class="h-full"></div>
+        <div class="gutter-col gutter-col-1 bg-slate-800"></div>
+        <div class="bg-vsdark text-white pl-5 overflow-auto h-full">
+          <pre id="output"></pre>
           <button
             class="rounded-2xl right-5 bottom-5 absolute bg-gradient-to-r from-purple-600 to-pink-500 p-2 font-bold"
             type="button"
+            id="clearButton"
           >
             Clear console
           </button>
