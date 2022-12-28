@@ -1,4 +1,5 @@
 import './style.css';
+import 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js';
 import { editor } from 'monaco-editor';
 import JsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
 import Split from 'split-grid';
@@ -22,7 +23,6 @@ Split({
 
 const output = document.querySelector('#output');
 const editorDiv = document.querySelector('#editor');
-const clearButton = document.querySelector('#clearButton');
 
 const codeEditor = editor.create(editorDiv, {
   value: `const HelloWorld = () => {
@@ -30,7 +30,7 @@ const codeEditor = editor.create(editorDiv, {
   }
 HelloWorld()`,
   theme: 'vs-dark',
-  fontFamily: "'Fira Code', 'Consolas'",
+  fontFamily: '"Fira Code", "Consolas", monospace',
   fontLigatures: true,
   language: 'javascript',
   automaticLayout: true,
@@ -41,25 +41,41 @@ function clearOutput() {
   output.textContent = '';
 }
 
-// Override the console.log function to display the output in the output div
+// Override the console log,error, warn and info function to display the output in the output div
 const oldLog = console.log;
 const oldError = console.error;
+
+const model = codeEditor.getModel();
+
 console.log = function (...args) {
-  oldLog(...args);
+  const consoleLogs = model.findMatches(
+    'console.log',
+    false,
+    false,
+    false,
+    null,
+    false
+  );
+  const lines = consoleLogs.map(({ range }) => range.startLineNumber);
+  oldLog(lines);
   output.innerText += args.join(' ') + '\n';
+  oldLog();
+  oldLog(...args);
 };
 
 console.error = function (...args) {
-  oldError(...args);
   output.innerHTML += `<pre class="text-red-500">${args.join(' ')}</pre>`;
+  oldError(...args);
 };
 
 function executeCode() {
   try {
     clearOutput();
     const code = codeEditor.getValue();
-    console.log(eval(code));
+    const result = eval(code);
+    console.log(result);
   } catch (error) {
+    clearOutput();
     console.error(error);
   }
 }
@@ -73,9 +89,6 @@ codeEditor.onDidChangeModelContent((event) => {
   }, 300);
 });
 
-clearButton.addEventListener('click', () => {
-  clearOutput();
-});
 function printMessage() {
   console.log('\n\n\n\n\n\n\n\n', '     /         / \\        Welcome');
   console.log('     /         /   \\       To');

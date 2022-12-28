@@ -7,6 +7,9 @@ module.exports = {
       colors: {
         vsdark: '#1e1e1e',
       },
+      fontFamily: {
+        vscode: ['"Fira Code"', 'Consolas', 'monospace'],
+      },
     },
   },
   plugins: [],
