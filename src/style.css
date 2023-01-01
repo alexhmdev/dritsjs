@@ -17,12 +17,14 @@
 ::-webkit-scrollbar-thumb {
   background-color: #4f4f4f;
 }
-.container-grid {
+
+.grid {
   display: grid;
-  width: 100%;
+  grid-template-columns: 1fr 10px 1fr;
 }
 
 .gutter-col {
-  grid-row: 1/2/1;
-  cursor: ew-resize;
+  cursor: col-resize;
+  grid-column: 2;
+  grid-row: 1/-1;
 }

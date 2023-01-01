@@ -12,14 +12,7 @@ window.MonacoEnvironment = {
   },
 };
 
-Split({
-  columnGutters: [
-    {
-      track: 1,
-      element: document.querySelector('.gutter-col-1'),
-    },
-  ],
-});
+
 
 const output = document.querySelector('#output');
 const editorDiv = document.querySelector('#editor');
@@ -33,8 +26,25 @@ HelloWorld()`,
   fontFamily: '"Fira Code", "Consolas", monospace',
   fontLigatures: true,
   language: 'javascript',
-  automaticLayout: true,
   wordWrap: 'on',
+  automaticLayout: true,
+  fixedOverflowWidgets: true,
+  scrollBeyondLastLine: false,
+  roundedSelection: false,
+  autoDetectHighContrast: false,
+  minimap: {
+    enabled: false
+  }
+});
+
+Split({
+  columnGutters: [
+    {
+      track: 1,
+      element: document.querySelector('.gutter-col'),
+    },
+  ],
+  columnCursor: 'ew-resize',
 });
 
 function clearOutput() {
@@ -48,6 +58,12 @@ const oldError = console.error;
 const model = codeEditor.getModel();
 
 console.log = function (...args) {
+  args = args.map((arg) => {
+    if (typeof arg === 'object') {
+      return JSON.stringify(arg, undefined, 2);
+    }
+    return arg;
+  });
   const consoleLogs = model.findMatches(
     'console.log',
     false,
@@ -59,7 +75,7 @@ console.log = function (...args) {
   const lines = consoleLogs.map(({ range }) => range.startLineNumber);
   oldLog(lines);
   output.innerText += args.join(' ') + '\n';
-  oldLog();
+  oldLog(args.map((arg) => typeof arg));
   oldLog(...args);
 };
 

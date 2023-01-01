@@ -8,12 +8,25 @@
   </head>
   <body>
     <div class="w-full h-full absolute overflow-hidden">
-      <div
-        class="h-full grid"
-        style="grid-template-columns: 49.99% 0.1% 49.99%"
-      >
-        <div id="editor" class="h-full"></div>
-        <div class="gutter-col gutter-col-1 bg-neutral-600"></div>
+      <div id="tabs" class="flex text-white bg-vsdark">
+        <div id="tab1" class="w-56 border-2 border-r-neutral-600">
+          <input
+            type="text"
+            value="Tab1"
+            class="bg-transparent text-white outline-none"
+          />
+        </div>
+        <div id="tab1">
+          <input
+            type="text"
+            value="Tab2"
+            class="bg-transparent text-white outline-none"
+          />
+        </div>
+      </div>
+      <div class="h-full grid">
+        <div id="editor" class="overflow-hidden"></div>
+        <div class="gutter-col bg-neutral-600"></div>
         <div class="bg-vsdark text-white pl-5 overflow-auto h-full">
           <pre id="output" class="text-green-500 font-vscode"></pre>
         </div>
