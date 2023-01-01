@@ -7,31 +7,38 @@
     <title>DritsJs</title>
   </head>
   <body>
-    <div class="w-full h-full absolute overflow-hidden">
-      <div id="tabs" class="flex text-white bg-vsdark">
-        <div id="tab1" class="w-56 border-2 border-r-neutral-600">
-          <input
-            type="text"
-            value="Tab1"
-            class="bg-transparent text-white outline-none"
-          />
-        </div>
-        <div id="tab1">
-          <input
-            type="text"
-            value="Tab2"
-            class="bg-transparent text-white outline-none"
-          />
-        </div>
-      </div>
-      <div class="h-full grid">
-        <div id="editor" class="overflow-hidden"></div>
-        <div class="gutter-col bg-neutral-600"></div>
-        <div class="bg-vsdark text-white pl-5 overflow-auto h-full">
-          <pre id="output" class="text-green-500 font-vscode"></pre>
-        </div>
+    <div id="tabs" class="flex text-center border-t-2 border-t-neutral-600">
+      <nav class="w-full bg-vsdark text-white">
+        <ul id="tablist" class="flex">
+          <li
+            class="flex-auto flex justify-center border-r-2 border-r-neutral-600"
+          >
+            <span contenteditable>New tab</span>
+          </li>
+          <li
+            class="flex-auto flex justify-center border-r-2 border-b-2 border-r-neutral-600 border-b-neutral-600"
+          >
+            <span contenteditable>New tab</span>
+          </li>
+          <li
+            class="flex-auto flex justify-center border-r-2 border-b-2 border-r-neutral-600 border-b-neutral-600"
+          >
+            <span contenteditable>New tab</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="h-full grid">
+      <div id="editor" class=""></div>
+      <div class="gutter-col bg-neutral-600"></div>
+      <div class="bg-vsdark text-white pl-5 overflow-auto h-full">
+        <pre
+          id="output"
+          class="text-green-500 font-vscode leading-[normal]"
+        ></pre>
       </div>
     </div>
+
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>

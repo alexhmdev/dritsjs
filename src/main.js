@@ -12,8 +12,6 @@ window.MonacoEnvironment = {
   },
 };
 
-
-
 const output = document.querySelector('#output');
 const editorDiv = document.querySelector('#editor');
 
@@ -28,13 +26,12 @@ HelloWorld()`,
   language: 'javascript',
   wordWrap: 'on',
   automaticLayout: true,
-  fixedOverflowWidgets: true,
   scrollBeyondLastLine: false,
   roundedSelection: false,
   autoDetectHighContrast: false,
   minimap: {
-    enabled: false
-  }
+    enabled: false,
+  },
 });
 
 Split({

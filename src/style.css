@@ -14,17 +14,22 @@
   background-color: transparent;
   width: 14px;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #4f4f4f;
 }
 
+#editor {
+  overflow-y: hidden;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: 1fr 10px 1fr;
+  grid-template-columns: 1fr 2px 1fr;
+  height: 100vh;
 }
 
 .gutter-col {
   cursor: col-resize;
   grid-column: 2;
-  grid-row: 1/-1;
 }
