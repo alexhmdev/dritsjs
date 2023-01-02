@@ -48,7 +48,7 @@ function clearOutput() {
   output.textContent = '';
 }
 
-// Override the console log,error, warn and info function to display the output in the output div
+// Override the console log and error function to display the output in the output div
 const oldLog = console.log;
 const oldError = console.error;
 
