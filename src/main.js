@@ -61,16 +61,6 @@ console.log = function (...args) {
     }
     return arg;
   });
-  const consoleLogs = model.findMatches(
-    'console.log',
-    false,
-    false,
-    false,
-    null,
-    false
-  );
-  const lines = consoleLogs.map(({ range }) => range.startLineNumber);
-  oldLog(lines);
   output.innerText += args.join(' ') + '\n';
   oldLog(args.map((arg) => typeof arg));
   oldLog(...args);
@@ -84,18 +74,39 @@ console.error = function (...args) {
 function executeCode() {
   try {
     clearOutput();
-    const code = codeEditor.getValue();
+    let code = codeEditor.getValue();
+    const consoleLogs = model.findMatches(
+      'console.log',
+      false,
+      false,
+      false,
+      null,
+      false
+    );
+    consoleLogs.forEach(({ range }) => {
+      let line = range.startLineNumber;
+      let lineContent = model.getLineContent(line);
+      lineContent = lineContent.replace(/[(]/, `(${'\n'.repeat(line)}`);
+      code = code.split('\n');
+      code[line - 1] = lineContent;
+      code = code.join('\n');
+    });
+
     const result = eval(code);
     console.log(result);
   } catch (error) {
     clearOutput();
-    console.error(error);
+    if (error instanceof RangeError) {
+      console.error('Error: Infinite loop detected');
+    } else {
+      console.error(error);
+      throw error;
+    }
   }
 }
 
 let timeout;
 codeEditor.onDidChangeModelContent((event) => {
-  oldLog(event);
   clearTimeout(timeout);
   timeout = setTimeout(() => {
     executeCode();
