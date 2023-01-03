@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        vsdark: '#1e1e1e',
+        vsdark: '#0b1015',
       },
       fontFamily: {
         vscode: ['"Fira Code"', 'Consolas', 'monospace'],
