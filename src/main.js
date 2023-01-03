@@ -13,12 +13,10 @@ window.MonacoEnvironment = {
 };
 /* load monaco */
 
-fetch('/themes/dritsjs.json')
-  .then((data) => data.json())
-  .then((data) => {
-    editor.defineTheme('dritsjs', data);
-    editor.setTheme('dritsjs');
-  });
+import('./themes/dritsjs.json').then((data) => {
+  editor.defineTheme('dritsjs', data);
+  editor.setTheme('dritsjs');
+});
 
 const output = document.querySelector('#output');
 const editorDiv = document.querySelector('#editor');
