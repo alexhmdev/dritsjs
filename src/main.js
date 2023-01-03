@@ -75,22 +75,6 @@ function executeCode() {
   try {
     clearOutput();
     let code = codeEditor.getValue();
-    const consoleLogs = model.findMatches(
-      'console.log',
-      false,
-      false,
-      false,
-      null,
-      false
-    );
-    consoleLogs.forEach(({ range }) => {
-      let line = range.startLineNumber;
-      let lineContent = model.getLineContent(line);
-      lineContent = lineContent.replace(/[(]/, `(${'\n'.repeat(line)}`);
-      code = code.split('\n');
-      code[line - 1] = lineContent;
-      code = code.join('\n');
-    });
 
     const result = eval(code);
     console.log(result);
