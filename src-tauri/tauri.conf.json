@@ -1,14 +1,14 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "npm run build",
+    "beforeBuildCommand": "npm run build:desktop",
     "beforeDevCommand": "npm run dev",
     "devPath": "http://localhost:5173/dritsjs/",
     "distDir": "../dist"
   },
   "package": {
     "productName": "dritsjs",
-    "version": "0.1.0"
+    "version": "1.0.0"
   },
   "tauri": {
     "allowlist": {
@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.dritsjs.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -59,7 +59,8 @@
         "height": 600,
         "resizable": true,
         "title": "DritsJs",
-        "width": 800
+        "width": 800,
+        "url": "dritsjs"
       }
     ]
   }

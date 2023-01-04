@@ -1,11 +1,12 @@
 {
   "name": "dritsjs",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "cross-env TAILWIND_MODE=watch vite",
     "build": "cross-env TAILWIND_MODE=build vite build",
+    "build:desktop": "cross-env TAILWIND_MODE=build DESKTOP=true vite build",
     "preview": "vite preview",
     "tauri": "tauri"
   },

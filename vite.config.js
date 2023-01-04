@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import { ghPages } from 'vite-plugin-gh-pages';
 
 export default defineConfig({
-  base: '/dritsjs/',
   plugins: [ghPages()],
   // prevent vite from obscuring rust errors
   clearScreen: false,
