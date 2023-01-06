@@ -77,13 +77,13 @@ console.error = function (...args) {
   oldError(...args);
 };
 
-function executeCode() {
+async function executeCode() {
   try {
     clearOutput();
     let code = codeEditor.getValue();
-
-    const result = eval(code);
-    console.log(result);
+    const encodedJs = encodeURIComponent(code);
+    const dataUri = 'data:text/javascript;charset=utf-8,' + encodedJs;
+    await import(/* @vite-ignore */ dataUri);
   } catch (error) {
     clearOutput();
     if (error instanceof RangeError) {
