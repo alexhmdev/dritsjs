@@ -18,6 +18,9 @@
 ::-webkit-scrollbar-thumb {
   background-color: #4f4f4f;
 }
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
 
 #editor {
   position: relative;
@@ -27,7 +30,6 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr 2px 1fr;
-  height: 100vh;
 }
 
 .gutter-col {

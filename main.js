@@ -1,14 +1,18 @@
 // Modules to control application life and create native browser window
-const { app, shell, BrowserWindow } = require('electron');
+const { app, shell, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const { electronApp, optimizer } = require('@electron-toolkit/utils');
+const menu = require('./menu');
+
+let mainWindow;
 
 function createWindow() {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
     show: false,
+    frame: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux'
       ? {
@@ -31,8 +35,8 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile(path.join(__dirname, './dist/index.html'));
-  //   mainWindow.loadURL('http://localhost:5173/');
+  // mainWindow.loadFile(path.join(__dirname, './dist/index.html'));
+  mainWindow.loadURL('http://localhost:5173/');
 }
 
 // This method will be called when Electron has finished
@@ -40,7 +44,7 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   // Set app user model id for windows
-  electronApp.setAppUserModelId('com.electron');
+  electronApp.setAppUserModelId('com.dritsjs');
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
@@ -49,8 +53,9 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window);
   });
 
-  createWindow();
+  Menu.setApplicationMenu(menu);
 
+  createWindow();
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.

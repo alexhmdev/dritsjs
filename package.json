@@ -5,7 +5,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "cross-env TAILWIND_MODE=watch vite",
-    "dev:desktop": "electron-vite dev",
+    "dev:desktop": "electron-vite dev --watch",
     "build": "cross-env TAILWIND_MODE=build vite build",
     "build:desktop": "cross-env TAILWIND_MODE=build DESKTOP=true vite build",
     "preview": "vite preview",
