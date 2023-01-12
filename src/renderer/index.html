@@ -9,8 +9,17 @@
   <!-- <body
     class="flex h-screen overflow-hidden p-1 bg-gradient-to-r from-red-500 to-yellow-500"
   > -->
-  <body class="flex h-screen overflow-hidden bg-vsdark">
-    <div class="h-full w-full grid overflow-hidden bg-vsdark rounded-md">
+  <body class="h-screen overflow-hidden text-white bg-vsdark p-1">
+    <nav class="flex items-center justify-between" id="menu-bar">
+      <div><button id="menu-btn">🍔</button></div>
+      <div class="flex-1 text-center">DritsJs</div>
+      <div class="fixed top-[1px] right-[1px]">
+        <button id="minimize-btn">🤔</button>
+        <button id="max-unmax-btn">⏹</button>
+        <button id="close-btn">❎</button>
+      </div>
+    </nav>
+    <div class="h-full w-full grid overflow-hidden bg-vsdark rounded-md p-1">
       <div id="editor"></div>
       <div class="gutter-col bg-neutral-600"></div>
       <div class="bg-vsdark text-white pl-5 overflow-auto h-full">

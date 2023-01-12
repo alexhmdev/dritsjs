@@ -1,14 +1,21 @@
-const { contextBridge, BrowserWindow } = require('electron');
+const { remote } = require('electron');
+console.log('Preload');
+const {
+  getCurrentWindow,
+  openMenu,
+  minimizeWindow,
+  unmaximizeWindow,
+  maxUnmaxWindow,
+  isWindowMaximized,
+  closeWindow,
+} = require('./menu-functions');
 
-contextBridge.exposeInMainWorld('versions', {
-  node: () => process.versions.node,
-  chrome: () => process.versions.chrome,
-  electron: () => process.versions.electron,
-  // we can also expose variables, not just functions
+window.addEventListener('DOMContentLoaded', () => {
+  window.getCurrentWindow = getCurrentWindow;
+  window.openMenu = openMenu;
+  window.minimizeWindow = minimizeWindow;
+  window.unmaximizeWindow = unmaximizeWindow;
+  window.maxUnmaxWindow = maxUnmaxWindow;
+  window.isWindowMaximized = isWindowMaximized;
+  window.closeWindow = closeWindow;
 });
-
-function createNewTab() {
-  const newWindow = new BrowserWindow({ width: 800, height: 600 });
-  // newWindow.loadFile('index.html');
-  newWindow.loadURL('http://localhost:5173/');
-}

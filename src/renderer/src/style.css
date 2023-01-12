@@ -9,7 +9,10 @@
   font-weight: 400;
   font-style: normal;
 }
-
+.gradient-color {
+  background-image: linear-gradient(tomato, purple, gold);
+  animation: ease 15s infinite;
+}
 ::-webkit-scrollbar {
   background-color: transparent;
   width: 14px;
@@ -17,6 +20,7 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: #4f4f4f;
+  width: 14px;
 }
 ::-webkit-scrollbar-corner {
   background-color: transparent;
@@ -35,4 +39,7 @@
 .gutter-col {
   cursor: col-resize;
   grid-column: 2;
+}
+
+@keyframes animate-gradient {
 }

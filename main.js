@@ -14,14 +14,15 @@ function createWindow() {
     show: false,
     frame: false,
     autoHideMenuBar: true,
+    darkTheme: true,
     ...(process.platform === 'linux'
       ? {
           icon: path.join(__dirname, 'public/logoRED.png'),
         }
       : { icon: 'public/logoRED.png' }),
     webPreferences: {
-      preload: path.join(__dirname, 'src/preload/preload.js'),
-      sandbox: false,
+      preload: 'src/preload/preload.js',
+      nodeIntegration: true,
     },
   });
 

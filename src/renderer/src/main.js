@@ -1,5 +1,6 @@
 import './style.css';
 import 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js';
+import './menu-manager.js';
 import { editor } from 'monaco-editor';
 import JsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
 import Split from 'split-grid';
