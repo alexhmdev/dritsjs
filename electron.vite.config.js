@@ -1,12 +1,32 @@
-// electron.vite.config.js
-export default {
+import { defineConfig } from 'electron-vite';
+import { resolve } from 'path';
+export default defineConfig({
   main: {
-    // vite config options
+    build: {
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, 'electron/main/main.js'),
+          menu: resolve(__dirname, 'electron/main/menu.js'),
+        },
+      },
+    },
   },
   preload: {
-    // vite config options
+    build: {
+      rollupOptions: {
+        input: {
+          preload: resolve(__dirname, 'electron/preload/preload.js'),
+        },
+      },
+    },
   },
   renderer: {
-    // vite config options
+    build: {
+      rollupOptions: {
+        input: {
+          index: resolve(__dirname, 'index.html'),
+        },
+      },
+    },
   },
-};
+});

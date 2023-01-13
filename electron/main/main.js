@@ -21,17 +21,26 @@ function createWindow() {
     darkTheme: true,
     ...(process.platform === 'linux'
       ? {
-          icon: path.join(__dirname, 'public/logoRED.png'),
+          icon: path.join(__dirname, '../resources/logoRED.png'),
         }
-      : { icon: 'public/logoRED.png' }),
+      : { icon: '../resources/logoRED.png' }),
     webPreferences: {
-      preload: path.join(__dirname, './src/preload/preload.js'),
+      preload: path.join(__dirname, '../preload/preload.js'),
       nodeIntegration: true,
     },
   });
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show();
+  });
+
+  mainWindow.on('maximize', () => {
+    console.log('maximizing');
+    ipcMain.emit('maximizing');
+  });
+  mainWindow.on('unmaximize', () => {
+    console.log('unmaximizing');
+    ipcMain.emit('unmaximizing');
   });
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -57,8 +66,6 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window);
   });
-
-  Menu.setApplicationMenu(menu);
 
   createWindow();
   app.on('activate', function () {
@@ -90,9 +97,13 @@ ipcMain.on('maxUnmaxWindow', () => {
   }
 });
 ipcMain.on('closeWindow', () => {
-  console.log('Hola');
   mainWindow.close();
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
+ipcMain.on('openMenu', (event, ...args) => {
+  const [x, y] = args;
+  menu.popup({
+    window: mainWindow,
+    x,
+    y,
+  });
+});

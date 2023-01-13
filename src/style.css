@@ -9,7 +9,7 @@
   font-weight: 400;
   font-style: normal;
 }
-.gradient-color {
+.border-gradient-1 {
   background-image: linear-gradient(tomato, purple, gold);
   animation: ease 15s infinite;
 }

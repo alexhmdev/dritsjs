@@ -1,7 +1,7 @@
 {
   "name": "dritsjs",
   "private": true,
-  "main": "main.js",
+  "main": "./out/main/main.js",
   "version": "1.0.0",
   "scripts": {
     "dev": "cross-env TAILWIND_MODE=watch vite",
