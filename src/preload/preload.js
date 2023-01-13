@@ -1,21 +1,9 @@
-const { remote } = require('electron');
-console.log('Preload');
-const {
-  getCurrentWindow,
-  openMenu,
-  minimizeWindow,
-  unmaximizeWindow,
-  maxUnmaxWindow,
-  isWindowMaximized,
-  closeWindow,
-} = require('./menu-functions');
+const { contextBridge, ipcRenderer } = require('electron');
 
-window.addEventListener('DOMContentLoaded', () => {
-  window.getCurrentWindow = getCurrentWindow;
-  window.openMenu = openMenu;
-  window.minimizeWindow = minimizeWindow;
-  window.unmaximizeWindow = unmaximizeWindow;
-  window.maxUnmaxWindow = maxUnmaxWindow;
-  window.isWindowMaximized = isWindowMaximized;
-  window.closeWindow = closeWindow;
+contextBridge.exposeInMainWorld('electronAPI', {
+  minimize: () => ipcRenderer.send('minimize'),
+  closeWindow: () => ipcRenderer.send('closeWindow'),
+  maxUnmaxWindow: () => ipcRenderer.send('maxUnmaxWindow'),
+  isMaximized: () => ipcRenderer.invoke('isMaximized'),
+  openMenu: (x, y) => ipcRenderer.invoke('openMenu', x, y),
 });

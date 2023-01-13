@@ -3,14 +3,18 @@ const { app, shell, BrowserWindow, Menu } = require('electron');
 const path = require('path');
 const { electronApp, optimizer } = require('@electron-toolkit/utils');
 const menu = require('./menu');
+const { ipcMain } = require('electron/main');
 
+/**
+ * @type {BrowserWindow}
+ */
 let mainWindow;
 
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 900,
-    height: 670,
+    height: 600,
     show: false,
     frame: false,
     autoHideMenuBar: true,
@@ -21,7 +25,7 @@ function createWindow() {
         }
       : { icon: 'public/logoRED.png' }),
     webPreferences: {
-      preload: 'src/preload/preload.js',
+      preload: path.join(__dirname, './src/preload/preload.js'),
       nodeIntegration: true,
     },
   });
@@ -71,6 +75,23 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit();
   }
+});
+
+ipcMain.handle('isMaximized', () => mainWindow.isMaximized());
+
+ipcMain.on('minimize', () => {
+  mainWindow.minimize();
+});
+ipcMain.on('maxUnmaxWindow', () => {
+  if (mainWindow.isMaximized()) {
+    mainWindow.unmaximize();
+  } else {
+    mainWindow.maximize();
+  }
+});
+ipcMain.on('closeWindow', () => {
+  console.log('Hola');
+  mainWindow.close();
 });
 
 // In this file you can include the rest of your app's specific main process

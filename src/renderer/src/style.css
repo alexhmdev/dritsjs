@@ -30,6 +30,49 @@
   position: relative;
   overflow: hidden;
 }
+.maximize-icon {
+  background-image: url('/icons/maximize.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.minimize-icon {
+  background-image: url('/icons/minimize.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.unmaximize-icon {
+  background-image: url('/icons/unmaximize.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.close-icon {
+  background-image: url('/icons/close.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.menu-icon {
+  background-image: url('/icons/menu.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+#menu-bar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.windows-buttons {
+  -webkit-app-region: no-drag;
+}
 
 .grid {
   display: grid;
