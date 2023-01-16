@@ -1,7 +1,10 @@
-const { app, Menu } = require('electron');
+const { app, Menu, ipcMain } = require('electron');
 
 const isMac = process.platform === 'darwin';
 
+/**
+ * @type {import('electron').MenuItemConstructorOptions}
+ */
 const template = [
   // { role: 'appMenu' }
   ...(isMac
@@ -29,7 +32,7 @@ const template = [
   },
   // { role: 'editMenu' }
   {
-    label: 'Editar',
+    label: 'Edit',
     submenu: [
       { role: 'undo' },
       { role: 'redo' },
@@ -55,6 +58,13 @@ const template = [
   {
     label: 'View',
     submenu: [
+      {
+        label: 'Awesome border',
+        submenu: [
+          { label: 'Border 1', click: () => ipcMain.emit('border', 'border1') },
+          { label: 'None', click: () => ipcMain.emit('border', 'none') },
+        ],
+      },
       { role: 'reload' },
       { role: 'forceReload' },
       { role: 'toggleDevTools' },

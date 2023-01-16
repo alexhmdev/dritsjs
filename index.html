@@ -10,9 +10,9 @@
     class="flex h-screen overflow-hidden p-1 bg-gradient-to-r from-red-500 to-yellow-500"
   > -->
   <body class="h-screen flex flex-col overflow-hidden text-white bg-vsdark">
-    <main class="p-1 bg rounded-md">
+    <div class="h-full border-vsdark border-solid border-2 rounded-md">
       <nav
-        class="flex items-center justify-between border-b-neutral-600 border-b-[2px] bg-vsdark"
+        class="flex items-center justify-between border-b-neutral-600 border-b-[2px] bg-vsdark h-8"
       >
         <div class="grow text-center" id="menu-bar"><p>DritsJs</p></div>
         <div class="flex-none absolute left-2 windows-buttons hidden">
@@ -36,7 +36,7 @@
           ></button>
         </div>
       </nav>
-      <section class="h-full flex relative">
+      <section class="flex h-[calc(100%-2rem)]">
         <div class="h-full w-full grid bg-vsdark p-1">
           <div id="editor"></div>
           <div class="gutter-col bg-neutral-600"></div>
@@ -45,7 +45,7 @@
           </div>
         </div>
       </section>
-    </main>
+    </div>
 
     <script type="module" src="./src/main.js"></script>
   </body>

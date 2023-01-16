@@ -10,17 +10,31 @@
   font-style: normal;
 }
 .border-gradient-1 {
-  background-image: linear-gradient(tomato, purple, gold);
-  animation: ease 15s infinite;
+  background: linear-gradient(-85deg, tomato, purple, gold);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 ::-webkit-scrollbar {
   background-color: transparent;
-  width: 14px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #4f4f4f;
-  width: 14px;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-corner {
   background-color: transparent;

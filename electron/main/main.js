@@ -1,7 +1,7 @@
 // Modules to control application life and create native browser window
 const { app, shell, BrowserWindow, Menu } = require('electron');
 const path = require('path');
-const { electronApp, optimizer } = require('@electron-toolkit/utils');
+const { electronApp, optimizer, platform } = require('@electron-toolkit/utils');
 const menu = require('./menu');
 const { ipcMain } = require('electron/main');
 
@@ -19,14 +19,14 @@ function createWindow() {
     frame: false,
     autoHideMenuBar: true,
     darkTheme: true,
-    ...(process.platform === 'linux'
+
+    ...(platform.isLinux
       ? {
-          icon: path.join(__dirname, '../resources/logoRED.png'),
+          icon: path.join(__dirname, 'public/logoRED.png'),
         }
-      : { icon: '../resources/logoRED.png' }),
+      : { icon: 'public/logoRED.png' }),
     webPreferences: {
       preload: path.join(__dirname, '../preload/preload.js'),
-      nodeIntegration: true,
     },
   });
 

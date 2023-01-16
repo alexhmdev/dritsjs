@@ -40,6 +40,9 @@ HelloWorld()`,
   minimap: {
     enabled: false,
   },
+  scrollbar: {
+    verticalScrollbarSize: 4,
+  },
 });
 
 Split({
@@ -116,3 +119,8 @@ function printMessage() {
 }
 
 printMessage();
+
+window.electronAPI.ipcRenderer.on('border', (border) => {
+  console.log(border);
+  console.log('Changing  border');
+});
