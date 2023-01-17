@@ -9,8 +9,33 @@
   font-weight: 400;
   font-style: normal;
 }
-.border-gradient-1 {
+
+.border1 {
   background: linear-gradient(-85deg, tomato, purple, gold);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+.border2 {
+  background: linear-gradient(-85deg, red, green, blue);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+.border3 {
+  background: linear-gradient(-85deg, #00ad26, rgb(0, 128, 122), orange);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+.border4 {
+  background: linear-gradient(-85deg, blue, purple, violet);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+.border5 {
+  background: linear-gradient(-85deg, red, purple, #00ad26);
   animation: gradient 15s ease infinite;
   background-size: 200% 200%;
   padding: 0.25rem;

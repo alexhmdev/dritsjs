@@ -6,6 +6,9 @@ import { editor } from 'monaco-editor';
 import JsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
 import Split from 'split-grid';
 
+// Default borders
+const defaultBorders = ['border1', 'border2', 'border3', 'border4', 'border5'];
+
 window.MonacoEnvironment = {
   getWorker(_, label) {
     if (label === 'javascript') {
@@ -22,6 +25,7 @@ import('./themes/dritsjs.json').then((data) => {
 
 const output = document.querySelector('#output');
 const editorDiv = document.querySelector('#editor');
+const body = document.querySelector('body');
 
 const codeEditor = editor.create(editorDiv, {
   value: `const HelloWorld = () => {
@@ -54,6 +58,10 @@ Split({
   ],
   columnCursor: 'ew-resize',
 });
+
+if (localStorage.getItem('border')) {
+  body.classList.add(localStorage.getItem('border'));
+}
 
 function clearOutput() {
   output.textContent = '';
@@ -120,7 +128,16 @@ function printMessage() {
 
 printMessage();
 
-window.electronAPI.ipcRenderer.on('border', (border) => {
-  console.log(border);
-  console.log('Changing  border');
+window.electronAPI.ipcRenderer.on('border', (_, border) => {
+  defaultBorders.forEach((defaultBorder) => {
+    if (body.classList.contains(defaultBorder))
+      body.classList.remove(defaultBorder);
+  });
+  if (border === 'none') {
+    body.classList.add('bg-vsdark');
+  } else {
+    body.classList.remove('bg-vsdark');
+    body.classList.add(border);
+  }
+  localStorage.setItem('border', border);
 });

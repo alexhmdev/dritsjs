@@ -61,8 +61,12 @@ const template = [
       {
         label: 'Awesome border',
         submenu: [
-          { label: 'Border 1', click: () => ipcMain.emit('border', 'border1') },
-          { label: 'None', click: () => ipcMain.emit('border', 'none') },
+          { label: 'Border 1', click: () => app.emit('border', 'border1') },
+          { label: 'Border 2', click: () => app.emit('border', 'border2') },
+          { label: 'Border 3', click: () => app.emit('border', 'border3') },
+          { label: 'Border 4', click: () => app.emit('border', 'border4') },
+          { label: 'Border 5', click: () => app.emit('border', 'border5') },
+          { label: 'None', click: () => app.emit('border', 'none') },
         ],
       },
       { role: 'reload' },

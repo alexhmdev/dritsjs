@@ -30,11 +30,15 @@ closeButton.addEventListener('click', (e) => {
   window.electronAPI.closeWindow();
 });
 
-window.electronAPI.ipcRenderer.on('maximizing', () => {
-  maxUnmaxButton.classList.remove('maximize-icon');
-  maxUnmaxButton.classList.add('unmaximize-icon');
-});
-window.electronAPI.ipcRenderer.on('unmaximizing', () => {
-  maxUnmaxButton.classList.remove('unmaximize-icon');
-  maxUnmaxButton.classList.add('maximize-icon');
-});
+window.electronAPI.ipcRenderer.on(
+  'windowGeometryChange',
+  (_, { isMaximized }) => {
+    if (isMaximized) {
+      maxUnmaxButton.classList.remove('maximize-icon');
+      maxUnmaxButton.classList.add('unmaximize-icon');
+    } else {
+      maxUnmaxButton.classList.remove('unmaximize-icon');
+      maxUnmaxButton.classList.add('maximize-icon');
+    }
+  }
+);

@@ -34,14 +34,14 @@ function createWindow() {
     mainWindow.show();
   });
 
-  mainWindow.on('maximize', () => {
-    console.log('maximizing');
-    ipcMain.emit('maximizing');
-  });
-  mainWindow.on('unmaximize', () => {
-    console.log('unmaximizing');
-    ipcMain.emit('unmaximizing');
-  });
+  for (const ev of ['maximize', 'unmaximize', 'minimize', 'restore']) {
+    mainWindow.on(ev, () => {
+      console.log(ev);
+      mainWindow.webContents.send('windowGeometryChange', {
+        isMaximized: mainWindow.isMaximized(),
+      });
+    });
+  }
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
@@ -82,6 +82,11 @@ app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {
     app.quit();
   }
+});
+
+app.on('border', (border) => {
+  console.log('changing border');
+  mainWindow.webContents.send('border', border);
 });
 
 ipcMain.handle('isMaximized', () => mainWindow.isMaximized());
