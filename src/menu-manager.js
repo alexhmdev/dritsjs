@@ -5,16 +5,16 @@ const closeButton = document.getElementById('close-btn');
 
 menuButton.addEventListener('click', (e) => {
   // Opens menu at (x,y) coordinates of mouse click on the hamburger icon.
-  window.electronAPI.openMenu(e.x, e.y);
+  window.electronAPI?.openMenu(e.x, e.y);
 });
 
 minimizeButton.addEventListener('click', (e) => {
-  window.electronAPI.minimize();
+  window.electronAPI?.minimize();
 });
 
 maxUnmaxButton.addEventListener('click', async (e) => {
-  window.electronAPI.maxUnmaxWindow();
-  const maximized = await window.electronAPI.isMaximized();
+  window.electronAPI?.maxUnmaxWindow();
+  const maximized = await window.electronAPI?.isMaximized();
   console.log(maximized);
   // Change the middle maximize-unmaximize icons.
   if (maximized) {
@@ -27,10 +27,10 @@ maxUnmaxButton.addEventListener('click', async (e) => {
 });
 
 closeButton.addEventListener('click', (e) => {
-  window.electronAPI.closeWindow();
+  window.electronAPI?.closeWindow();
 });
 
-window.electronAPI.ipcRenderer.on(
+window.electronAPI?.ipcRenderer.on(
   'windowGeometryChange',
   (_, { isMaximized }) => {
     if (isMaximized) {

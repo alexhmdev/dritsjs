@@ -2,16 +2,41 @@
   "name": "dritsjs",
   "private": true,
   "main": "./out/main/main.js",
-  "version": "1.0.0",
+  "author": {
+    "name": "Alejandro Herrera",
+    "email": "alex13pks@gmail.com"
+  },
+  "description": "An Open source Javascript playground, feel free to explore javascript in this sandbox.",
+  "version": "2.0.0",
   "scripts": {
     "dev": "cross-env TAILWIND_MODE=watch vite",
     "dev:desktop": "electron-vite dev --watch",
     "build": "cross-env TAILWIND_MODE=build vite build",
-    "build:desktop": "cross-env TAILWIND_MODE=build DESKTOP=true vite build",
+    "build:desktop": "cross-env TAILWIND_MODE=build DESKTOP=true vite build && electron-vite build && electron-builder",
     "preview": "vite preview",
     "preview:desktop": "electron-vite preview",
     "prevbuild": "electron-vite build",
     "electron-toolkit": "electron ./node_modules/electron-toolkit"
+  },
+  "build": {
+    "appId": "com.dritsjs.app",
+    "productName": "DritsJS",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/**",
+      "!public",
+      "!src",
+      "!{.gitignore,README.md,electron.vite.config.js,tailwind.config.cjs,potscss.config.cjs,vite.config.js}"
+    ],
+    "icon": "public/logoRED.png",
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    }
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",

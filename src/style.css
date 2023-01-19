@@ -55,6 +55,7 @@
 ::-webkit-scrollbar {
   background-color: transparent;
   width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -123,5 +124,6 @@
   grid-column: 2;
 }
 
-@keyframes animate-gradient {
+::selection {
+  background-color: #3d4148;
 }
