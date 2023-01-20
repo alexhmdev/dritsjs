@@ -3,7 +3,7 @@ A JavaScript playground for web and desktop perfect to run your snippets, practi
 ### 🔗[Try it here!](https://peckas13.github.io/dritsjs/)
 ### Latest release:
 >Currently on Windows as a installer or portable app.
-### 🏷️[2.0.0](https://github.com/peckas13/dritsjs/releases/tag/1.0.0)
+### 🏷️[2.0.0](https://github.com/peckas13/dritsjs/releases/tag/2.0.0)
 
 ## Features
 
