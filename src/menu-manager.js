@@ -3,10 +3,11 @@ const minimizeButton = document.getElementById('minimize-btn');
 const maxUnmaxButton = document.getElementById('max-unmax-btn');
 const closeButton = document.getElementById('close-btn');
 
-menuButton.addEventListener('click', (e) => {
-  // Opens menu at (x,y) coordinates of mouse click on the hamburger icon.
-  window.electronAPI?.openMenu(e.x, e.y);
-});
+if (window.electronAPI)
+  menuButton.addEventListener('click', (e) => {
+    // Opens menu at (x,y) coordinates of mouse click on the hamburger icon.
+    window.electronAPI?.openMenu(e.x, e.y);
+  });
 
 minimizeButton.addEventListener('click', (e) => {
   window.electronAPI?.minimize();

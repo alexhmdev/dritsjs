@@ -127,17 +127,18 @@ function printMessage() {
 }
 
 printMessage();
-
-window.electronAPI?.ipcRenderer.on('border', (_, border) => {
-  defaultBorders.forEach((defaultBorder) => {
-    if (body.classList.contains(defaultBorder))
-      body.classList.remove(defaultBorder);
+if (window.electronAPI) {
+  window.electronAPI?.ipcRenderer.on('border', (_, border) => {
+    defaultBorders.forEach((defaultBorder) => {
+      if (body.classList.contains(defaultBorder))
+        body.classList.remove(defaultBorder);
+    });
+    if (border === 'none') {
+      body.classList.add('bg-vsdark');
+    } else {
+      body.classList.remove('bg-vsdark');
+      body.classList.add(border);
+    }
+    localStorage.setItem('border', border);
   });
-  if (border === 'none') {
-    body.classList.add('bg-vsdark');
-  } else {
-    body.classList.remove('bg-vsdark');
-    body.classList.add(border);
-  }
-  localStorage.setItem('border', border);
-});
+}
