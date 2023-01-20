@@ -10,27 +10,120 @@
   font-style: normal;
 }
 
+.border1 {
+  background: linear-gradient(-85deg, tomato, purple, gold);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+.border2 {
+  background: linear-gradient(-85deg, red, green, blue);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+.border3 {
+  background: linear-gradient(-85deg, #00ad26, rgb(0, 128, 122), orange);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+.border4 {
+  background: linear-gradient(-85deg, blue, purple, violet);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+.border5 {
+  background: linear-gradient(-85deg, red, purple, #00ad26);
+  animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
+  padding: 0.25rem;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 ::-webkit-scrollbar {
   background-color: transparent;
-  width: 14px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #4f4f4f;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
 }
 
 #editor {
   position: relative;
   overflow: hidden;
 }
+.maximize-icon {
+  background-image: url('/icons/maximize.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.minimize-icon {
+  background-image: url('/icons/minimize.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.unmaximize-icon {
+  background-image: url('/icons/unmaximize.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.close-icon {
+  background-image: url('/icons/close.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.menu-icon {
+  background-image: url('/icons/menu.svg');
+  background-repeat: no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+#menu-bar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+}
+
+.windows-buttons {
+  -webkit-app-region: no-drag;
+}
 
 .grid {
   display: grid;
   grid-template-columns: 1fr 2px 1fr;
-  height: 100vh;
 }
 
 .gutter-col {
   cursor: col-resize;
   grid-column: 2;
+}
+
+::selection {
+  background-color: #3d4148;
 }

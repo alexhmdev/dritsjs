@@ -1,8 +1,13 @@
 import './style.css';
 import 'https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js';
+import './menu-manager.js';
+import './verify-platform.js';
 import { editor } from 'monaco-editor';
 import JsWorker from 'monaco-editor/esm/vs/language/typescript/ts.worker?worker';
 import Split from 'split-grid';
+
+// Default borders
+const defaultBorders = ['border1', 'border2', 'border3', 'border4', 'border5'];
 
 window.MonacoEnvironment = {
   getWorker(_, label) {
@@ -20,6 +25,7 @@ import('./themes/dritsjs.json').then((data) => {
 
 const output = document.querySelector('#output');
 const editorDiv = document.querySelector('#editor');
+const body = document.querySelector('body');
 
 const codeEditor = editor.create(editorDiv, {
   value: `const HelloWorld = () => {
@@ -38,6 +44,9 @@ HelloWorld()`,
   minimap: {
     enabled: false,
   },
+  scrollbar: {
+    verticalScrollbarSize: 4,
+  },
 });
 
 Split({
@@ -50,6 +59,10 @@ Split({
   columnCursor: 'ew-resize',
 });
 
+if (localStorage.getItem('border')) {
+  body.classList.add(localStorage.getItem('border'));
+}
+
 function clearOutput() {
   output.textContent = '';
 }
@@ -58,11 +71,9 @@ function clearOutput() {
 const oldLog = console.log;
 const oldError = console.error;
 
-const model = codeEditor.getModel();
-
 console.log = function (...args) {
   args = args.map((arg) => {
-    if (typeof arg === 'object') {
+    if (typeof arg === 'object' && arg) {
       return JSON.stringify(arg, undefined, 2);
     }
     return arg;
@@ -116,3 +127,17 @@ function printMessage() {
 }
 
 printMessage();
+
+window.electronAPI?.ipcRenderer.on('border', (_, border) => {
+  defaultBorders.forEach((defaultBorder) => {
+    if (body.classList.contains(defaultBorder))
+      body.classList.remove(defaultBorder);
+  });
+  if (border === 'none') {
+    body.classList.add('bg-vsdark');
+  } else {
+    body.classList.remove('bg-vsdark');
+    body.classList.add(border);
+  }
+  localStorage.setItem('border', border);
+});
